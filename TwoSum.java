@@ -25,35 +25,43 @@
 
 /*
  * MY Approach
- * bruteForce
+ * TO optimize the time complexcity
  * given nums arr and target
- * Taking two loops i and j 
- * i will be at 0th index and j will be at i+1
- * i will itrate till arr.length in both
+ * Taking two pointers i and j 
+ * i will be at 0th index and j will be at last index
+ * i will itrate till i <=j (i should be less than j if it is equal or greater then we will break the loop)
  * we will check if nums[i] + nums[j] == target return the index of i and j
+ * if nums[i] + nums[j] less than target then i will be incremented to i++ i will go right side of the array
+ * else j will be go towards left side of the array
  * 
  * 
  */
+
+import java.util.Arrays;
 
 public class TwoSum {
 
 public static void main(String[] args) {
     int nums[]={3,2,4};
+    Arrays.sort(nums);
     int target=6;
     int [] result=TwoSum(nums,target);
     System.out.println("indices "+result[0]+","+result[1]);
 
 }
 public static int[] TwoSum(int nums [],int target){
-for(int i=0;i<nums.length;i++){
-    for(int j=i+1;j<nums.length;j++){
-        if(nums[i]+nums[j]==target){
+    int i=0,j=nums.length-1;
+while (i<=j) {
+ if(nums[i]+nums[j]==target){
             return new int[]{i,j};
         }
+        else if((nums[i]+nums[j])<target){
+            i++;
+        }else{
+            j--;
+        }
     
-    }
-}
-    
+    }   
 return new int[]{-1,-1};
 }
 }
